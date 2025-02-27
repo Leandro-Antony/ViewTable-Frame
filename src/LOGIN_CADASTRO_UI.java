@@ -215,7 +215,7 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
             int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja deletar o cliente: " + jTable1.getValueAt(i, 0) +
                     "\nNome: " + jTable1.getValueAt(i, 2) +
                     "\nSobrenome: " + jTable1.getValueAt(i, 3) +
-                    "\nEmail: " + jTable1.getValueAt(i, 4), "CONFIRME", JOptionPane.INFORMATION_MESSAGE);
+                    "\nEmail: " + jTable1.getValueAt(i, 4), "CONFIRME", JOptionPane.ERROR_MESSAGE);
             
             if (resposta == JOptionPane.YES_OPTION) {
                 int customer_id = (int) jTable1.getValueAt(i, 0);
