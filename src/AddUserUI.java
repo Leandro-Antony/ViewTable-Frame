@@ -221,15 +221,12 @@ public class AddUserUI extends javax.swing.JFrame {
         String email = jTextField4.getText();
         int addressId = Integer.parseInt(jTextField5.getText());
 
-        // Criando um novo objeto Customer
         Customer c = new Customer(storeId, firstName, lastName, email, addressId, 1);
 
         // Inserindo no banco de dados
         dao.insertCustomer(c);
 
-        // Mensagem de sucesso
-            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-               
+            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE); 
         try {
             new LOGIN_CADASTRO_UI().setVisible(true);
         } catch (SQLException ex) {
