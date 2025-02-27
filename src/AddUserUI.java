@@ -1,8 +1,12 @@
 
+import frameloginbd.Customer;
 import frameloginbd.CustomerDAO;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class AddUserUI extends javax.swing.JFrame {
 
@@ -14,7 +18,7 @@ public class AddUserUI extends javax.swing.JFrame {
     public AddUserUI() throws SQLException {
         this.dao = new CustomerDAO();
         initComponents();
-        setLocation(null);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -36,13 +40,13 @@ public class AddUserUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
 
         jCheckBox4.setText("jCheckBox1");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -74,10 +78,12 @@ public class AddUserUI extends javax.swing.JFrame {
         jLabel2.setText("Nome:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Sobrenome:");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ID Loja:");
 
@@ -88,15 +94,18 @@ public class AddUserUI extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Email:");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("ID Endereço:");
 
         jButton1.setBackground(new java.awt.Color(19, 49, 82));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CADASTRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +115,7 @@ public class AddUserUI extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(19, 49, 82));
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("CANCELAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -129,11 +139,11 @@ public class AddUserUI extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3)
                             .addComponent(jTextField1)
                             .addComponent(jTextField2)
                             .addComponent(jTextField4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(jTextField3))
                         .addGap(99, 99, 99))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(149, 149, 149)
@@ -158,7 +168,7 @@ public class AddUserUI extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -203,9 +213,36 @@ public class AddUserUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Customer C =
+        try {
+        // Pegando valores dos campos de entrada
+        int storeId = Integer.parseInt(jTextField3.getText());
+        String firstName = jTextField1.getText();
+        String lastName = jTextField2.getText();
+        String email = jTextField4.getText();
+        int addressId = Integer.parseInt(jTextField5.getText());
+
+        // Criando um novo objeto Customer
+        Customer c = new Customer(storeId, firstName, lastName, email, addressId, 1);
+
+        // Inserindo no banco de dados
+        dao.insertCustomer(c);
+
+        // Mensagem de sucesso
+            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+               
+        try {
+            new LOGIN_CADASTRO_UI().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(false);
         
-        ao.insertCustomer(c);
+
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Erro: Certifique-se de inserir números válidos para ID Loja e ID Endereço.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao inserir no banco de dados: " + e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

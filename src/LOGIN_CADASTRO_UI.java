@@ -8,15 +8,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author 20221074010005
- */
 public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
 
     private final CustomerDAO dao;
@@ -196,8 +187,11 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        AddUserUI a = new AddUserUI();
-        a.setVisible(true);
+        try {
+            new AddUserUI().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setVisible(false);
         
         // Código para selecionar linhas e colunas
@@ -221,20 +215,20 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
             int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja deletar o cliente: " + jTable1.getValueAt(i, 0) +
                     "\nNome: " + jTable1.getValueAt(i, 2) +
                     "\nSobrenome: " + jTable1.getValueAt(i, 3) +
-                    "\nEmail: " + jTable1.getValueAt(i, 4), "CONFIRME", JOptionPane.YES_NO_OPTION);
+                    "\nEmail: " + jTable1.getValueAt(i, 4), "CONFIRME", JOptionPane.INFORMATION_MESSAGE);
             
             if (resposta == JOptionPane.YES_OPTION) {
                 int customer_id = (int) jTable1.getValueAt(i, 0);
                 try {
                     dao.deleteCustomer(customer_id);
                     view();
-                    JOptionPane.showConfirmDialog(null, "Cliente deletado com sucesso!", "Sucesso", JOptionPane.OK_OPTION);
+                    JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
                     Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             } else {
-                JOptionPane.showConfirmDialog(null, "Cancelado!", "Operação cancelada!", JOptionPane.OK_OPTION);    
+                JOptionPane.showConfirmDialog(null, "Cancelado!", "Operação cancelada!", JOptionPane.WARNING_MESSAGE);    
             }
             
         }
