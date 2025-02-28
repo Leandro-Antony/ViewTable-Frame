@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
 
     private final CustomerDAO dao;
-   
     
     public void view(){
         try {
@@ -136,6 +135,11 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/editar.png"))); // NOI18N
         jButton1.setText("UPDATE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -195,8 +199,8 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
         setVisible(false);
         
         // Código para selecionar linhas e colunas
-        int i = jTable1.getSelectedRow(); //pega a linha selecionada por clique
-        int j = jTable1.getSelectedColumn(); //pega a coluna selecionada por clique
+        //int i = jTable1.getSelectedRow(); //pega a linha selecionada por clique
+        //int j = jTable1.getSelectedColumn(); //pega a coluna selecionada por clique
         
         
         //if (i == -1) { //Selecionou nada
@@ -233,6 +237,34 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int i = jTable1.getSelectedRow(); // Pega a linha selecionada
+
+        if (i != -1) { // Verifica se alguma linha foi selecionada
+            String customer_id = jTable1.getValueAt(i, 0).toString();
+            String idLoja = jTable1.getValueAt(i, 1).toString();
+            String nome = jTable1.getValueAt(i, 2).toString();
+            String sobrenome = jTable1.getValueAt(i, 3).toString();
+            String email = jTable1.getValueAt(i, 4).toString();
+            String idEndereco = jTable1.getValueAt(i, 5).toString();
+            String ativo = jTable1.getValueAt(i, 6).toString();
+
+            // Abre a tela de edição e passa os dados
+            UpdateUserUI updateUserUI;
+               
+            try {
+                updateUserUI = new UpdateUserUI(customer_id, idLoja, nome, sobrenome, email, idEndereco, ativo);
+                updateUserUI.setVisible(true);
+                setVisible(false);  
+            } catch (SQLException ex) {
+                Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um usuário para editar.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

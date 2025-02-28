@@ -13,6 +13,8 @@ public class Customer {
     private Timestamp create_date;
     private Timestamp last_update;
 
+    
+    
     public Customer(int store_id, String first_name, String last_name, String email, int address_id, int active) {
         this.store_id = store_id;
         this.first_name = first_name;
@@ -27,7 +29,15 @@ public class Customer {
         return "Customer{" + "customer_id=" + customer_id + "\nstore_id=" + store_id + "\nfirst_name=" + first_name + "\nlast_name=" + last_name + "\nemail=" + email + "\naddress_id=" + address_id + "\nactive=" + active + "\ncreate_date=" + create_date + "\nlast_update=" + last_update + "\n\n" + '}';
     }
 
-    
+    public Customer(int store_id, String first_name, String last_name, String email, int address_id, int active, Timestamp last_update){
+        this.store_id = store_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.address_id = address_id;
+        this.active = active;
+        this.last_update = last_update;
+    }
     
     public Customer(int customer_id, int store_id, String first_name, String last_name, String email, int address_id, int active, Timestamp create_date, Timestamp last_update) {
         this.customer_id = customer_id;
