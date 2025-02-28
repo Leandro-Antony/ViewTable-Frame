@@ -13,7 +13,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
      * Creates new form UpdateUserUI
      */
     private String customer_id;
-    private final CustomerDAO dao;
+    private CustomerDAO dao;
     
     public UpdateUserUI() {
     initComponents();
