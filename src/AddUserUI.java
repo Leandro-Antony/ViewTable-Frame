@@ -20,6 +20,7 @@ public class AddUserUI extends javax.swing.JFrame {
         this.dao = new CustomerDAO();
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Cadastrar Cliente");
     }
 
     /**
@@ -51,6 +52,10 @@ public class AddUserUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
 
         jCheckBox4.setText("jCheckBox1");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +156,35 @@ public class AddUserUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("TEMA");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Claro", "Escuro" }));
+        jComboBox1.setSelectedIndex(1);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("TAMANHO DA FONTE");
+        jLabel9.setToolTipText("");
+
+        jSlider1.setForeground(new java.awt.Color(255, 255, 255));
+        jSlider1.setMajorTickSpacing(1);
+        jSlider1.setMaximum(2);
+        jSlider1.setPaintLabels(true);
+        jSlider1.setPaintTicks(true);
+        jSlider1.setValue(0);
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -188,6 +222,19 @@ public class AddUserUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +245,15 @@ public class AddUserUI extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -311,6 +366,87 @@ public class AddUserUI extends javax.swing.JFrame {
         storeId = 2;
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        int font_sum = jSlider1.getValue();
+        jButton1.setFont(new java.awt.Font("Arial", 1, 16+font_sum*2));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 16+font_sum*2));
+        jComboBox1.setFont(new java.awt.Font("Arial", 1, 12+font_sum*2));
+        jLabel2.setFont(new java.awt.Font("Arial", 2, 18+font_sum*2));
+        jLabel4.setFont(new java.awt.Font("Arial", 2, 18+font_sum*2));
+        jLabel5.setFont(new java.awt.Font("Arial", 2, 18+font_sum*2));
+        jLabel6.setFont(new java.awt.Font("Arial", 2, 18+font_sum*2));
+        jLabel7.setFont(new java.awt.Font("Arial", 2, 18+font_sum*2));
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
+        jRadioButton1.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
+        jRadioButton2.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
+    }//GEN-LAST:event_jSlider1StateChanged
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if (jComboBox1.getSelectedIndex() == 1) {
+            jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+            
+            jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jSeparator1.setForeground(new java.awt.Color(119, 141, 169));
+            
+            jButton1.setBackground(new java.awt.Color(19, 49, 82));
+            jButton1.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jButton2.setBackground(new java.awt.Color(19, 49, 82));
+            jButton2.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jSlider1.setForeground(new java.awt.Color(255, 255, 255));
+            
+        } else {
+            jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+            
+            jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jSeparator1.setForeground(new java.awt.Color(29, 45, 68));
+            
+            jButton1.setBackground(new java.awt.Color(206, 212, 218));
+            jButton1.setForeground(new java.awt.Color(0,0,0));
+            
+            jButton2.setBackground(new java.awt.Color(206, 212, 218));
+            jButton2.setForeground(new java.awt.Color(0,0,0));
+            
+            jSlider1.setForeground(new java.awt.Color(0,0,0));
+            
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,6 +492,7 @@ public class AddUserUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -363,10 +500,13 @@ public class AddUserUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;

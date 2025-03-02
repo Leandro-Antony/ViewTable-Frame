@@ -2,8 +2,6 @@
 import frameloginbd.Customer;
 import frameloginbd.CustomerDAO;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,13 +14,15 @@ public class UpdateUserUI extends javax.swing.JFrame {
     private int valor;
     
     public UpdateUserUI() {
-    initComponents();
+        initComponents();
     }
     
     public UpdateUserUI(String customer_id, String idLoja, String nome, String sobrenome, String email, String idEndereco, String ativo) throws SQLException {
         this.dao = new CustomerDAO();
         this.customer_id = customer_id;
+        setTitle("Atualizar Cliente");
         initComponents();
+        setLocationRelativeTo(null);
         if (Integer.parseInt(idLoja) == 1) {
             jRadioButton1.setSelected(true);
         } else {
@@ -299,7 +299,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
