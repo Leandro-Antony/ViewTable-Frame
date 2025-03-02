@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 public class SakilaCRUD extends javax.swing.JFrame {
 
     private final CustomerDAO dao;
+    private int tema = 1; //0 - Branco; 1 - Preto
     
     public void view(){
         try {
@@ -44,6 +45,16 @@ public class SakilaCRUD extends javax.swing.JFrame {
     public SakilaCRUD() throws SQLException {
         this.dao = new CustomerDAO();
         initComponents();
+        jComboBox1.setSelectedIndex(tema);
+        setLocationRelativeTo(null); //Faz a janela aparecer no centro da tela
+        setTitle("Sakila CRUD");
+        view();
+    }
+    
+    public SakilaCRUD(int tema) throws SQLException {
+        this.dao = new CustomerDAO();
+        initComponents();
+        jComboBox1.setSelectedIndex(tema);
         setLocationRelativeTo(null); //Faz a janela aparecer no centro da tela
         setTitle("Sakila CRUD");
         view();
@@ -277,7 +288,7 @@ public class SakilaCRUD extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
-            new AddUserUI().setVisible(true);
+            new AddUserUI(tema).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -329,7 +340,7 @@ public class SakilaCRUD extends javax.swing.JFrame {
             
                
             try {
-                new UpdateUserUI(customer_id, idLoja, nome, sobrenome, email, idEndereco, ativo).setVisible(true);
+                new UpdateUserUI(customer_id, idLoja, nome, sobrenome, email, idEndereco, ativo, tema).setVisible(true);
                 setVisible(false);  
             } catch (SQLException ex) {
                 Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
@@ -348,6 +359,8 @@ public class SakilaCRUD extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         if (jComboBox1.getSelectedIndex() == 1) {
+            tema = 1;
+            
             jPanel1.setBackground(new java.awt.Color(13, 27, 42));
             
             jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -383,6 +396,8 @@ public class SakilaCRUD extends javax.swing.JFrame {
 
             jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/semibolha.gif"))); 
         } else {
+            tema = 0;
+            
             jPanel1.setBackground(new java.awt.Color(255, 255, 255));
             
             jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -400,8 +415,8 @@ public class SakilaCRUD extends javax.swing.JFrame {
             jTable1.setBackground(new java.awt.Color(255, 255, 255));
             jTable1.setForeground(new java.awt.Color(0, 0, 0));
             jTable1.setGridColor(new java.awt.Color(29, 45, 68));
-            jTable1.setSelectionBackground(new java.awt.Color(3, 40, 79));
-            jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+            jTable1.setSelectionBackground(new java.awt.Color(206, 212, 218));
+            jTable1.setSelectionForeground(new java.awt.Color(0, 0, 0));
             
             jButton3.setBackground(new java.awt.Color(206, 212, 218));
             jButton3.setForeground(new java.awt.Color(0,0,0));

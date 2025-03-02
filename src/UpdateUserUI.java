@@ -10,19 +10,23 @@ public class UpdateUserUI extends javax.swing.JFrame {
 
     private String customer_id;
     private CustomerDAO dao;
-    private int idLoja;
     private int valor;
+    private int tema;
+    private int n_idEndereco;
     
     public UpdateUserUI() {
         initComponents();
     }
     
-    public UpdateUserUI(String customer_id, String idLoja, String nome, String sobrenome, String email, String idEndereco, String ativo) throws SQLException {
+    public UpdateUserUI(String customer_id, String idLoja, String nome, String sobrenome, String email, String idEndereco, String ativo, int tema) throws SQLException {
         this.dao = new CustomerDAO();
         this.customer_id = customer_id;
         setTitle("Atualizar Cliente");
         initComponents();
         setLocationRelativeTo(null);
+        this.tema = tema;
+        jComboBox1.setSelectedIndex(tema);
+        
         if (Integer.parseInt(idLoja) == 1) {
             jRadioButton1.setSelected(true);
         } else {
@@ -64,6 +68,10 @@ public class UpdateUserUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,21 +170,64 @@ public class UpdateUserUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("TEMA");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Claro", "Escuro" }));
+        jComboBox1.setSelectedIndex(1);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("TAMANHO DA FONTE");
+
+        jSlider1.setForeground(new java.awt.Color(255, 255, 255));
+        jSlider1.setMajorTickSpacing(1);
+        jSlider1.setMaximum(2);
+        jSlider1.setPaintLabels(true);
+        jSlider1.setPaintTicks(true);
+        jSlider1.setValue(0);
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(148, 148, 148))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -187,21 +238,16 @@ public class UpdateUserUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(jTextField2)
                                 .addComponent(jTextField3)
                                 .addComponent(jTextField4)
-                                .addComponent(jTextField5))
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jCheckBox1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jRadioButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jRadioButton2)))
+                        .addGap(136, 136, 136))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +257,15 @@ public class UpdateUserUI extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jRadioButton1)
@@ -236,7 +290,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jCheckBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -259,17 +313,33 @@ public class UpdateUserUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            String nome = jTextField2.getText();
-            String sobrenome = jTextField3.getText();
-            String email = jTextField4.getText();
-            int idEndereco = Integer.parseInt(jTextField5.getText());
-            int ativo;
-            if (jCheckBox1.isSelected()) {
-                ativo = 1;
+            int n_idLoja;
+            if (jRadioButton1.isSelected()) {
+                n_idLoja = 1;
             } else {
-                ativo = 0;
+                n_idLoja = 2;
             }
-            Customer c = new Customer(idLoja, nome, sobrenome, email, idEndereco, ativo);
+            
+            String n_nome = jTextField2.getText();
+            String n_sobrenome = jTextField3.getText();
+            String n_email = jTextField4.getText();
+            try {
+                n_idEndereco = Integer.parseInt(jTextField5.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor, insira um valor numérico válido para o ID do endereço.", 
+                                          "Erro ID Endereço", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int n_ativo;
+            if (jCheckBox1.isSelected()) {
+                n_ativo = 1;
+            } else {
+                n_ativo = 0;
+            }
+            
+            
+            
+            Customer c = new Customer(n_idLoja, n_nome, n_sobrenome, n_email, n_idEndereco, n_ativo);
             dao.updateCustomer(c, Integer.parseInt(customer_id));
         } catch (SQLException ex) {
             Logger.getLogger(UpdateUserUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -277,7 +347,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
         
         setVisible(false);
         try {
-            new SakilaCRUD().setVisible(true);
+            new SakilaCRUD(tema).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(UpdateUserUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -291,7 +361,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
         if (resposta == JOptionPane.YES_OPTION) {
             try {
                 setVisible(false);
-                new SakilaCRUD().setVisible(true);
+                new SakilaCRUD(tema).setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(UpdateUserUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -303,12 +373,91 @@ public class UpdateUserUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        idLoja = 1;
+
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        idLoja = 2;
+
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if (jComboBox1.getSelectedIndex() == 1) {
+            tema = 1;
+            jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+            
+            jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+            jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jSeparator1.setForeground(new java.awt.Color(119, 141, 169));
+            
+            jButton1.setBackground(new java.awt.Color(19, 49, 82));
+            jButton1.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jButton2.setBackground(new java.awt.Color(19, 49, 82));
+            jButton2.setForeground(new java.awt.Color(255, 255, 255));
+            
+            jSlider1.setForeground(new java.awt.Color(255, 255, 255));
+            
+        } else {
+            tema = 0;
+            jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+            
+            jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+            jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+            jLabel3.setForeground(new java.awt.Color(0, 0, 0)); 
+            jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+            jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+            jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+            jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+            jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+            jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+            jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
+            
+            jSeparator1.setForeground(new java.awt.Color(29, 45, 68));
+            
+            jButton1.setBackground(new java.awt.Color(206, 212, 218));
+            jButton1.setForeground(new java.awt.Color(0,0,0));
+            
+            jButton2.setBackground(new java.awt.Color(206, 212, 218));
+            jButton2.setForeground(new java.awt.Color(0,0,0));
+            
+            jSlider1.setForeground(new java.awt.Color(0,0,0));
+            
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        int font_sum = jSlider1.getValue();
+        jButton1.setFont(new java.awt.Font("Arial", 1, 16+font_sum*2));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 16+font_sum*2));
+        jComboBox1.setFont(new java.awt.Font("Arial", 0, 12+font_sum*2));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
+        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 14+font_sum*2));
+        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 14+font_sum*2));
+    }//GEN-LAST:event_jSlider1StateChanged
 
     /**
      * @param args the command line arguments
@@ -351,7 +500,9 @@ public class UpdateUserUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -359,10 +510,12 @@ public class UpdateUserUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
