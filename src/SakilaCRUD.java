@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
+public class SakilaCRUD extends javax.swing.JFrame {
 
     private final CustomerDAO dao;
     
@@ -36,11 +36,11 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
                 });
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public LOGIN_CADASTRO_UI() throws SQLException {
+    public SakilaCRUD() throws SQLException {
         this.dao = new CustomerDAO();
         initComponents();
         setLocationRelativeTo(null); //Faz a janela aparecer no centro da tela
@@ -64,6 +64,8 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,37 +143,51 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Esfera_informacao.gif"))); // NOI18N
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/semibolha.gif"))); // NOI18N
+        jLabel3.setText("\n");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148))
+                .addComponent(jLabel3)
+                .addGap(140, 140, 140)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 177, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(177, 177, 177)))
+                .addContainerGap())
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -194,7 +210,7 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
         try {
             new AddUserUI().setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         setVisible(false);
         
@@ -219,7 +235,7 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
             int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja deletar o cliente: " + jTable1.getValueAt(i, 0) +
                     "\nNome: " + jTable1.getValueAt(i, 2) +
                     "\nSobrenome: " + jTable1.getValueAt(i, 3) +
-                    "\nEmail: " + jTable1.getValueAt(i, 4), "CONFIRME", JOptionPane.ERROR_MESSAGE);
+                    "\nEmail: " + jTable1.getValueAt(i, 4), "CONFIRME", JOptionPane.YES_NO_OPTION);
             
             if (resposta == JOptionPane.YES_OPTION) {
                 int customer_id = (int) jTable1.getValueAt(i, 0);
@@ -228,7 +244,7 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
                     view();
                     JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
-                    Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             } else {
@@ -251,14 +267,13 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
             String ativo = jTable1.getValueAt(i, 6).toString();
 
             // Abre a tela de edição e passa os dados
-            UpdateUserUI updateUserUI;
+            
                
             try {
-                updateUserUI = new UpdateUserUI(customer_id, idLoja, nome, sobrenome, email, idEndereco, ativo);
-                updateUserUI.setVisible(true);
+                new UpdateUserUI(customer_id, idLoja, nome, sobrenome, email, idEndereco, ativo).setVisible(true);
                 setVisible(false);  
             } catch (SQLException ex) {
-                Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
         
         } else {
@@ -283,23 +298,24 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SakilaCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SakilaCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SakilaCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SakilaCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new LOGIN_CADASTRO_UI().setVisible(true);
+                    new SakilaCRUD().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -310,6 +326,8 @@ public class LOGIN_CADASTRO_UI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

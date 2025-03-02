@@ -12,7 +12,6 @@ public class CustomerDAO {
     public CustomerDAO() throws SQLException {
 
         this.con = new ConnectionFactory().getConnection();
-        System.out.println("Connection OK!");
 
     }
 
@@ -31,7 +30,6 @@ public class CustomerDAO {
 
         pst.execute();
         pst.close();
-        System.out.println("Customer ADDED!");
     }
 
     public void deleteCustomer(int id) throws SQLException {
@@ -40,7 +38,6 @@ public class CustomerDAO {
         PreparedStatement pst = con.prepareStatement(sql);
         pst.execute();
         pst.close();
-        System.out.println("Customer DELETED!");
     }
 
     public void updateCustomer(Customer c, int id) throws SQLException {
@@ -58,7 +55,6 @@ public class CustomerDAO {
         
         pst.execute();
         pst.close();
-        System.out.println("Customer UPDATED!");
     }
 
     public void showCustomers() throws SQLException {

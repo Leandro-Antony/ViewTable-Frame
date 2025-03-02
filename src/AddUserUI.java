@@ -14,6 +14,7 @@ public class AddUserUI extends javax.swing.JFrame {
      * Creates new form AddUserUI
      */
     private final CustomerDAO dao;
+    private int storeId;
     
     public AddUserUI() throws SQLException {
         this.dao = new CustomerDAO();
@@ -32,6 +33,7 @@ public class AddUserUI extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jCheckBox4 = new javax.swing.JCheckBox();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -46,7 +48,9 @@ public class AddUserUI extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
         jCheckBox4.setText("jCheckBox1");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +65,7 @@ public class AddUserUI extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 51));
         jPanel1.setForeground(new java.awt.Color(0, 0, 51));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CADASTRO DE USUÁRIO");
@@ -119,6 +123,33 @@ public class AddUserUI extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("CANCELAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/wired-outline-49-plus-circle-hover-swirl.gif"))); // NOI18N
+
+        buttonGroup2.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setText("Loja 1");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton2.setText("Loja 2");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,17 +157,13 @@ public class AddUserUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(102, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,25 +171,39 @@ public class AddUserUI extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(56, 56, 56)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                        .addComponent(jTextField2)
+                        .addComponent(jTextField4)
+                        .addComponent(jTextField5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jRadioButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton2)))
                 .addGap(102, 102, 102))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(76, 76, 76)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButton1)
+                        .addComponent(jRadioButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,7 +224,7 @@ public class AddUserUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,24 +256,30 @@ public class AddUserUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
         // Pegando valores dos campos de entrada
-        int storeId = Integer.parseInt(jTextField3.getText());
-        String firstName = jTextField1.getText();
-        String lastName = jTextField2.getText();
-        String email = jTextField4.getText();
-        int addressId = Integer.parseInt(jTextField5.getText());
+        
+            if (!(jRadioButton1.isSelected() || jRadioButton2.isSelected())) {
+                JOptionPane.showMessageDialog(null, "Selecione o ID da loja", "Erro - IDLoja", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String firstName = jTextField1.getText();
+                String lastName = jTextField2.getText();
+                String email = jTextField4.getText();
+                int addressId = Integer.parseInt(jTextField5.getText());
 
-        Customer c = new Customer(storeId, firstName, lastName, email, addressId, 1);
+                Customer c = new Customer(storeId, firstName, lastName, email, addressId, 1);
 
-        // Inserindo no banco de dados
-        dao.insertCustomer(c);
+                // Inserindo no banco de dados
+                dao.insertCustomer(c);
 
-            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE); 
-        try {
-            new LOGIN_CADASTRO_UI().setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(LOGIN_CADASTRO_UI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        setVisible(false);
+                JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    new SakilaCRUD().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                setVisible(false);
+            }
+         
+        
         
 
     } catch (NumberFormatException e) {
@@ -241,6 +288,28 @@ public class AddUserUI extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, "Erro ao inserir no banco de dados: " + e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int resp = JOptionPane.showConfirmDialog(null, "Deseja realmente cancelar?", "Confime", JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            try {
+                new SakilaCRUD().setVisible(true);
+                setVisible(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(AddUserUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        storeId = 1;
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        storeId = 2;
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,20 +352,23 @@ public class AddUserUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
