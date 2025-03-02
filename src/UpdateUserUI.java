@@ -13,18 +13,25 @@ public class UpdateUserUI extends javax.swing.JFrame {
     private int valor;
     private int tema;
     private int n_idEndereco;
+    private int fontSize;
+    private int font_sum_add;
+    private int font_sum_updt;
     
     public UpdateUserUI() {
         initComponents();
     }
     
-    public UpdateUserUI(String customer_id, String idLoja, String nome, String sobrenome, String email, String idEndereco, String ativo, int tema) throws SQLException {
+    public UpdateUserUI(String customer_id, String idLoja, String nome, String sobrenome, String email, String idEndereco, String ativo, int tema, int fontSize, int font_sum_add, int font_sum_updt) throws SQLException {
         this.dao = new CustomerDAO();
         this.customer_id = customer_id;
+        this.font_sum_add = font_sum_add;
+        this.font_sum_updt = font_sum_updt;
         setTitle("Atualizar Cliente");
         initComponents();
+        jSlider1.setValue(font_sum_updt);
         setLocationRelativeTo(null);
         this.tema = tema;
+        this.fontSize = fontSize;
         jComboBox1.setSelectedIndex(tema);
         
         if (Integer.parseInt(idLoja) == 1) {
@@ -347,7 +354,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
         
         setVisible(false);
         try {
-            new SakilaCRUD(tema).setVisible(true);
+            new SakilaCRUD(tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(UpdateUserUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -361,7 +368,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
         if (resposta == JOptionPane.YES_OPTION) {
             try {
                 setVisible(false);
-                new SakilaCRUD(tema).setVisible(true);
+                new SakilaCRUD(tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(UpdateUserUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -443,20 +450,20 @@ public class UpdateUserUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        int font_sum = jSlider1.getValue();
-        jButton1.setFont(new java.awt.Font("Arial", 1, 16+font_sum*2));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 16+font_sum*2));
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 12+font_sum*2));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
-        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 14+font_sum*2));
-        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 14+font_sum*2));
+        font_sum_updt = jSlider1.getValue();
+        jButton1.setFont(new java.awt.Font("Arial", 1, 16+font_sum_updt*2));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 16+font_sum_updt*2));
+        jComboBox1.setFont(new java.awt.Font("Arial", 0, 12+font_sum_updt*2));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14+font_sum_updt*2));
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14+font_sum_updt*2));
+        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 14+font_sum_updt*2));
+        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 14+font_sum_updt*2));
     }//GEN-LAST:event_jSlider1StateChanged
 
     /**

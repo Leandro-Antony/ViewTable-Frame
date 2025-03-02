@@ -13,6 +13,9 @@ public class SakilaCRUD extends javax.swing.JFrame {
 
     private final CustomerDAO dao;
     private int tema = 1; //0 - Branco; 1 - Preto
+    private int fontSize;
+    private int font_sum_add;
+    private int font_sum_updt;
     
     public void view(){
         try {
@@ -51,9 +54,13 @@ public class SakilaCRUD extends javax.swing.JFrame {
         view();
     }
     
-    public SakilaCRUD(int tema) throws SQLException {
+    public SakilaCRUD(int tema, int fontSize, int font_sum_add, int font_sum_updt) throws SQLException {
         this.dao = new CustomerDAO();
+        this.fontSize = fontSize;
+        this.font_sum_add = font_sum_add;
+        this.font_sum_updt = font_sum_updt;
         initComponents();
+        jSlider1.setValue(fontSize);
         jComboBox1.setSelectedIndex(tema);
         setLocationRelativeTo(null); //Faz a janela aparecer no centro da tela
         setTitle("Sakila CRUD");
@@ -287,7 +294,7 @@ public class SakilaCRUD extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
-            new AddUserUI(tema).setVisible(true);
+            new AddUserUI(tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -339,7 +346,7 @@ public class SakilaCRUD extends javax.swing.JFrame {
             
                
             try {
-                new UpdateUserUI(customer_id, idLoja, nome, sobrenome, email, idEndereco, ativo, tema).setVisible(true);
+                new UpdateUserUI(customer_id, idLoja, nome, sobrenome, email, idEndereco, ativo, tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
                 setVisible(false);  
             } catch (SQLException ex) {
                 Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
@@ -351,9 +358,9 @@ public class SakilaCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        int fontSize = jSlider1.getValue();
+        fontSize = jSlider1.getValue();
         
-        jTable1.setFont(new java.awt.Font("Arial", 1, fontSize));
+        jTable1.setFont(new java.awt.Font("Arial", 0, fontSize));
     }//GEN-LAST:event_jSlider1StateChanged
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

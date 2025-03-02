@@ -17,6 +17,9 @@ public class AddUserUI extends javax.swing.JFrame {
     private int storeId;
     private int tema;
     private int addressId;
+    private int fontSize;
+    private int font_sum_add;
+    private int font_sum_updt;
     
     public AddUserUI() throws SQLException {
         this.dao = new CustomerDAO();
@@ -25,10 +28,14 @@ public class AddUserUI extends javax.swing.JFrame {
         setTitle("Cadastrar Cliente");
     }
     
-    public AddUserUI(int tema) throws SQLException {
+    public AddUserUI(int tema, int fontSize, int font_sum_add, int font_sum_updt) throws SQLException {
         this.dao = new CustomerDAO();
         this.tema = tema;
+        this.fontSize = fontSize;
+        this.font_sum_add = font_sum_add;
+        this.font_sum_updt = font_sum_updt;
         initComponents();
+        jSlider1.setValue(font_sum_add);
         jComboBox1.setSelectedIndex(tema);
         setLocationRelativeTo(null);
         setTitle("Cadastrar Cliente");
@@ -290,7 +297,7 @@ public class AddUserUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -338,16 +345,16 @@ public class AddUserUI extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 try {
-                    new SakilaCRUD(tema).setVisible(true);
+                    new SakilaCRUD(tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(SakilaCRUD.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 setVisible(false);
 
     } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Erro: Certifique-se de preencher todos os campos solicitados.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        javax.swing.JOptionPane.showMessageDialog(this, "Certifique-se de preencher todos os campos solicitados.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
     } catch (SQLException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao inserir no banco de dados: " + e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        javax.swing.JOptionPane.showMessageDialog(this, "Escolha uma das lojas!", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -355,7 +362,7 @@ public class AddUserUI extends javax.swing.JFrame {
         int resp = JOptionPane.showConfirmDialog(null, "Deseja realmente cancelar?", "Confime", JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
             try {
-                new SakilaCRUD(tema).setVisible(true);
+                new SakilaCRUD(tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
                 setVisible(false);
             } catch (SQLException ex) {
                 Logger.getLogger(AddUserUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -374,19 +381,19 @@ public class AddUserUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        int font_sum = jSlider1.getValue();
-        jButton1.setFont(new java.awt.Font("Arial", 1, 16+font_sum*2));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 16+font_sum*2));
-        jComboBox1.setFont(new java.awt.Font("Arial", 1, 12+font_sum*2));
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18+font_sum*2));
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
-        jRadioButton1.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
-        jRadioButton2.setFont(new java.awt.Font("Arial", 1, 14+font_sum*2));
+        font_sum_add = jSlider1.getValue();
+        jButton1.setFont(new java.awt.Font("Arial", 1, 16+font_sum_add*2));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 16+font_sum_add*2));
+        jComboBox1.setFont(new java.awt.Font("Arial", 1, 12+font_sum_add*2));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18+font_sum_add*2));
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18+font_sum_add*2));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18+font_sum_add*2));
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18+font_sum_add*2));
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18+font_sum_add*2));
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14+font_sum_add*2));
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14+font_sum_add*2));
+        jRadioButton1.setFont(new java.awt.Font("Arial", 1, 14+font_sum_add*2));
+        jRadioButton2.setFont(new java.awt.Font("Arial", 1, 14+font_sum_add*2));
     }//GEN-LAST:event_jSlider1StateChanged
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
