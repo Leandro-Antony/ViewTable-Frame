@@ -331,8 +331,19 @@ public class AddUserUI extends javax.swing.JFrame {
                 String firstName = jTextField1.getText();
                 String lastName = jTextField2.getText();
                 String email = jTextField4.getText();
-            try {
-                addressId = Integer.parseInt(jTextField5.getText());
+                
+                if (firstName.equals("") || lastName.equals("") || email.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                } else {
+                    try {
+                if (Integer.parseInt(jTextField5.getText()) > 0 && Integer.parseInt(jTextField5.getText()) < 606) {
+                    addressId = Integer.parseInt(jTextField5.getText());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Informe um número entre 1 e 605 para o ID do endereço", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Por favor, insira um valor numérico válido para o ID do endereço.", 
                                           "Erro ID Endereço", JOptionPane.ERROR_MESSAGE);
@@ -344,6 +355,9 @@ public class AddUserUI extends javax.swing.JFrame {
                 dao.insertCustomer(c);
 
                 JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
+                
+            
                 try {
                     new SakilaCRUD(tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
                 } catch (SQLException ex) {

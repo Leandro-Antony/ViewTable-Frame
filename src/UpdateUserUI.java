@@ -16,11 +16,11 @@ public class UpdateUserUI extends javax.swing.JFrame {
     private int fontSize;
     private int font_sum_add;
     private int font_sum_updt;
-    
+
     public UpdateUserUI() {
         initComponents();
     }
-    
+
     public UpdateUserUI(String customer_id, String idLoja, String nome, String sobrenome, String email, String idEndereco, String ativo, int tema, int fontSize, int font_sum_add, int font_sum_updt) throws SQLException {
         this.dao = new CustomerDAO();
         this.customer_id = customer_id;
@@ -33,7 +33,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
         this.tema = tema;
         this.fontSize = fontSize;
         jComboBox1.setSelectedIndex(tema);
-        
+
         if (Integer.parseInt(idLoja) == 1) {
             jRadioButton1.setSelected(true);
         } else {
@@ -326,45 +326,54 @@ public class UpdateUserUI extends javax.swing.JFrame {
             } else {
                 n_idLoja = 2;
             }
-            
+
             String n_nome = jTextField2.getText();
             String n_sobrenome = jTextField3.getText();
             String n_email = jTextField4.getText();
-            try {
-                n_idEndereco = Integer.parseInt(jTextField5.getText());
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Por favor, insira um valor numérico válido para o ID do endereço.", 
-                                          "Erro ID Endereço", JOptionPane.ERROR_MESSAGE);
+            n_idEndereco = Integer.parseInt(jTextField5.getText());
+
+            if (n_nome.equals("") || n_sobrenome.equals("") || n_email.equals("")) {
+                JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
                 return;
-            }
-            int n_ativo;
-            if (jCheckBox1.isSelected()) {
-                n_ativo = 1;
             } else {
-                n_ativo = 0;
+                try {
+
+                    if (n_idEndereco > 0 && n_idEndereco < 606) {
+                        int n_ativo;
+                        if (jCheckBox1.isSelected()) {
+                            n_ativo = 1;
+                        } else {
+                            n_ativo = 0;
+                        }
+
+                        Customer c = new Customer(n_idLoja, n_nome, n_sobrenome, n_email, n_idEndereco, n_ativo);
+                        dao.updateCustomer(c, Integer.parseInt(customer_id));
+
+                        try {
+                            setVisible(false);
+                            new SakilaCRUD(tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(UpdateUserUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Informe um número entre 1 e 605 para o ID do endereço", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Por favor, insira um valor numérico válido para o ID do endereço.", "Erro ID Endereço", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
-            
-            
-            
-            Customer c = new Customer(n_idLoja, n_nome, n_sobrenome, n_email, n_idEndereco, n_ativo);
-            dao.updateCustomer(c, Integer.parseInt(customer_id));
+
         } catch (SQLException ex) {
             Logger.getLogger(UpdateUserUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        setVisible(false);
-        try {
-            new SakilaCRUD(tema, fontSize, font_sum_add, font_sum_updt).setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(UpdateUserUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int resposta = JOptionPane.showConfirmDialog(null, "Certeza que deseja cancelar?", "Confirme", JOptionPane.YES_NO_OPTION);
-        
+
         if (resposta == JOptionPane.YES_OPTION) {
             try {
                 setVisible(false);
@@ -376,7 +385,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        
+
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -391,7 +400,7 @@ public class UpdateUserUI extends javax.swing.JFrame {
         if (jComboBox1.getSelectedIndex() == 1) {
             tema = 1;
             jPanel1.setBackground(new java.awt.Color(0, 0, 51));
-            
+
             jLabel1.setForeground(new java.awt.Color(255, 255, 255));
             jLabel2.setForeground(new java.awt.Color(255, 255, 255));
             jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -402,28 +411,28 @@ public class UpdateUserUI extends javax.swing.JFrame {
             jLabel8.setForeground(new java.awt.Color(255, 255, 255));
             jLabel9.setForeground(new java.awt.Color(255, 255, 255));
             jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-            
+
             jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-            
+
             jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-            
+
             jSeparator1.setForeground(new java.awt.Color(119, 141, 169));
-            
+
             jButton1.setBackground(new java.awt.Color(19, 49, 82));
             jButton1.setForeground(new java.awt.Color(255, 255, 255));
-            
+
             jButton2.setBackground(new java.awt.Color(19, 49, 82));
             jButton2.setForeground(new java.awt.Color(255, 255, 255));
-            
+
             jSlider1.setForeground(new java.awt.Color(255, 255, 255));
-            
+
         } else {
             tema = 0;
             jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-            
+
             jLabel1.setForeground(new java.awt.Color(0, 0, 0));
             jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-            jLabel3.setForeground(new java.awt.Color(0, 0, 0)); 
+            jLabel3.setForeground(new java.awt.Color(0, 0, 0));
             jLabel4.setForeground(new java.awt.Color(0, 0, 0));
             jLabel5.setForeground(new java.awt.Color(0, 0, 0));
             jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -431,39 +440,39 @@ public class UpdateUserUI extends javax.swing.JFrame {
             jLabel8.setForeground(new java.awt.Color(0, 0, 0));
             jLabel9.setForeground(new java.awt.Color(0, 0, 0));
             jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-            
+
             jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
-            
+
             jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
-            
+
             jSeparator1.setForeground(new java.awt.Color(29, 45, 68));
-            
+
             jButton1.setBackground(new java.awt.Color(206, 212, 218));
-            jButton1.setForeground(new java.awt.Color(0,0,0));
-            
+            jButton1.setForeground(new java.awt.Color(0, 0, 0));
+
             jButton2.setBackground(new java.awt.Color(206, 212, 218));
-            jButton2.setForeground(new java.awt.Color(0,0,0));
-            
-            jSlider1.setForeground(new java.awt.Color(0,0,0));
-            
+            jButton2.setForeground(new java.awt.Color(0, 0, 0));
+
+            jSlider1.setForeground(new java.awt.Color(0, 0, 0));
+
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         font_sum_updt = jSlider1.getValue();
-        jButton1.setFont(new java.awt.Font("Arial", 1, 16+font_sum_updt*2));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 16+font_sum_updt*2));
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 12+font_sum_updt*2));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18+font_sum_updt*2));
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14+font_sum_updt*2));
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 14+font_sum_updt*2));
-        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 14+font_sum_updt*2));
-        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 14+font_sum_updt*2));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 16 + font_sum_updt * 2));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 16 + font_sum_updt * 2));
+        jComboBox1.setFont(new java.awt.Font("Arial", 0, 12 + font_sum_updt * 2));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18 + font_sum_updt * 2));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18 + font_sum_updt * 2));
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18 + font_sum_updt * 2));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18 + font_sum_updt * 2));
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18 + font_sum_updt * 2));
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18 + font_sum_updt * 2));
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14 + font_sum_updt * 2));
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14 + font_sum_updt * 2));
+        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 14 + font_sum_updt * 2));
+        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 14 + font_sum_updt * 2));
     }//GEN-LAST:event_jSlider1StateChanged
 
     /**
